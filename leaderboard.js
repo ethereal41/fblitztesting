@@ -58,7 +58,7 @@ export async function loadLeaderboard() {
     const leaderboardList = document.getElementById("leaderboard-list")
     if (!leaderboardList) return;
 
-    leaderboardList.innerHTML = "<li>Loading...</li>";
+    leaderboardList.innerHTML = "<p>Loading...</p>";
 
     const q = query(
         collection(db, "leaderboard"),
@@ -69,35 +69,41 @@ export async function loadLeaderboard() {
     const snapshot = await getDocs(q);
     leaderboardList.innerHTML = "";
 
-    snapshot.docs.forEach((doc, index) => {
-        const data = doc.data();
+    if (snapshot.docs.length === 0) {
+        const ohno = document.createElement("p");
+        ohno.textContent = "well, it looks like nobody's been playing formula blitz..."
+        leaderboardList.appendChild(ohno);
+    } else {
+        snapshot.docs.forEach((doc, index) => {
+            const data = doc.data();
 
-        const li = document.createElement("li");
-        const hr = document.createElement("hr")
+            const li = document.createElement("li");
+            const hr = document.createElement("hr")
 
-        console.log(index)
+            console.log(index)
 
-        if (index == 0) {
-            li.textContent = `${data.name} - ${data.score}`;
-            hr.classList.add("lbline")
-            hr.style.borderTop = "1.5px solid gold";
-        }
-        if (index == 1) {
-            li.textContent = `${data.name} - ${data.score}`;
-            hr.classList.add("lbline")
-            hr.style.borderTop = "1.5px solid silver";
-        }
-        if (index == 2) {
-            li.textContent = `${data.name} - ${data.score}`;
-            hr.classList.add("lbline")
-            hr.style.borderTop = "1.5px solid #cd7f32";
-        } else {
-            li.textContent = `${data.name} - ${data.score}`;
-            hr.classList.add("lbline")
-        }
+            if (index == 0) {
+                li.textContent = `${data.name} - ${data.score}`;
+                hr.classList.add("lbline")
+                hr.style.borderTop = "1.5px solid gold";
+            }
+            if (index == 1) {
+                li.textContent = `${data.name} - ${data.score}`;
+                hr.classList.add("lbline")
+                hr.style.borderTop = "1.5px solid silver";
+            }
+            if (index == 2) {
+                li.textContent = `${data.name} - ${data.score}`;
+                hr.classList.add("lbline")
+                hr.style.borderTop = "1.5px solid #cd7f32";
+            } else {
+                li.textContent = `${data.name} - ${data.score}`;
+                hr.classList.add("lbline")
+            }
 
 
-        leaderboardList.appendChild(li)
-        leaderboardList.appendChild(hr)
-    });
+            leaderboardList.appendChild(li)
+            leaderboardList.appendChild(hr)
+        });
+    }
 }
