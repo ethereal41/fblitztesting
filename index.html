@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formula Blitz — 60 Seconds</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,500&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+</head>
+
+<body>
+
+  <div class="stage">
+    <header>
+      <div class="brand">
+        <div>
+          <div class="mark">Formula <em>Blitz</em></div>
+          <div class="sub">60 seconds · pure recall</div>
+        </div>
+      </div>
+      <div class="meters">
+        <div class="meter time" id="meterTime">
+          <div class="label">Time</div>
+          <div class="value" id="timeVal">60</div>
+        </div>
+        <div class="meter score">
+          <div class="label">Score</div>
+          <div class="value" id="scoreVal">0</div>
+        </div>
+        <div class="meter streak">
+          <div class="label">Streak</div>
+          <div class="value" id="streakVal">0</div>
+        </div>
+      </div>
+      <div class="timebar">
+        <div id="timeFill"></div>
+      </div>
+    </header>
+
+    <div class="card-wrap">
+      <div id="popup" class="popup"></div>
+      <div class="card" id="card">
+        <div class="face front">
+          <div class="topband">
+            <span id="topicTag">— · —</span>
+            <span>Q<span id="qNum">1</span></span>
+          </div>
+          <div class="prompt">
+            <div class="verb" id="verb">Loading…</div>
+            <div class="expr" id="expr"></div>
+            <div class="hint" id="hint"></div>
+          </div>
+        </div>
+        <div class="face back" id="backFace">
+          <div class="verdict">
+            <div class="stamp" id="stamp">Correct</div>
+            <div>
+              <div class="truth-label">Answer</div>
+              <div class="truth" id="truth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- START OVERLAY -->
+  <div class="overlay" id="startOverlay">
+    <div class="panel">
+      <div class="intro">
+        <div class="eyebrow">A-Level · Formula Recall</div>
+        <h1>Formula <em>Blitz</em></h1>
+        <p>Sixty seconds. As many right as you can. Differentiate, integrate, identify, recall.</p>
+        <div class="topics">
+          <span class="chip">Double Angles</span>
+          <span class="chip">Pythagorean</span>
+          <span class="chip">Derivatives</span>
+          <span class="chip">Integrals</span>
+          <span class="chip">SUVAT</span>
+          <span class="chip">AP / GP</span>
+          <span class="chip">Binomial</span>
+          <span class="chip">By Parts</span>
+          <span class="chip">Reverse Chain</span>
+        </div> 
+        <button class="btn accent" id="startBtn">Start the clock</button>
+      </div>
+      <!-- <div class="divider"></div> -->
+    
+      <div class="panel lbpanel">
+        <div class="leaderboard-panel">
+          <h2 class="leaderboardh">Leaderboard</h2>
+          <hr class="lbhline" />
+          <ol id="leaderboard-list"></ol>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <!-- END OVERLAY -->
+  <div class="overlay hidden" id="endOverlay">
+    <div class="panel end">
+      <div class="eyebrow" id="endRank">Final Score</div>
+      <h1 id="finalScore">0</h1>
+      <p id="endMessage">Time's up. Here's how it went.</p>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="label">Correct</div>
+          <div class="value" id="endCorrect">0</div>
+        </div>
+        <div class="stat s2">
+          <div class="label">Best Streak</div>
+          <div class="value" id="endStreak">0</div>
+        </div>
+        <div class="stat s3">
+          <div class="label">Accuracy</div>
+          <div class="value" id="endAcc">0%</div>
+        </div>
+      </div>
+      <button class="btn accent" id="againBtn">Run it back</button>
+      <div class="lbform">
+        <label for="player-name" id="score-input-label">Want to be on the leaderboard?</label>
+        <input type="text" id="player-name" maxlength="20" placeholder="your name" />
+        <button class="btn accent2" id="submit-score">submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script type="module" src="leaderboard.js"></script> -->
+  <script type="module" src="./script.js"></script>
+
+</body>
+
+</html>
