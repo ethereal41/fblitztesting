@@ -70,10 +70,12 @@ export async function loadLeaderboard() {
     leaderboardList.innerHTML = "";
 
     if (snapshot.docs.length === 0) {
+        console.log(snapshot.docs.length)
         const ohno = document.createElement("p");
         ohno.textContent = "well, it looks like nobody's been playing formula blitz..."
         leaderboardList.appendChild(ohno);
     } else {
+        console.log(snapshot.docs.length)
         snapshot.docs.forEach((doc, index) => {
             const data = doc.data();
 
